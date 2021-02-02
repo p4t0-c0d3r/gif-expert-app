@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CategoryAdd } from './components/CategoryAdd';
+import { GifGrid } from './components/GifGrid';
 
 export const GifExpertApp = () => {
 
@@ -7,21 +8,22 @@ export const GifExpertApp = () => {
 
     const bob = (e) => {
         e.preventDefault();
-        // spred operator buscar
-        setCategories([...categories, 'Ataque a los titanes']);
     }
 
     return(
         <>
             <h2>GifExpertApp</h2>
             <hr />
-            <CategoryAdd />
+            <CategoryAdd setCategories = { setCategories }/>
             <button onClick={bob}>Añadir serie</button>
             <ol>
                 {
-                    categories.map( category => {
-                        return <li key={ category }>{ category }</li>
-                    })
+                    categories.map(category => (
+                        <GifGrid
+                            key={ category }
+                            category={ category } 
+                        />
+                    ))
                 }
             </ol>
         </>
